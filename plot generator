@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Prompt Generator</title>
+    <style>
+        /* CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 20px;
+            color: #520c6b;
+            background-color: #f1c4f2;
+            
+            
+        }
+        
+        body {
+            background-color: #f9b3ff;
+            text-align: center;
+        }
+        
+        
+        
+        
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+
+  
+
+</head>
+<body>
+
+<h1>Random Prompt Generator</h1>
+<h3>:)</h3>
+
+<div id="output"></div>
+
+<button onclick="generateRandomPrompt()">Random Prompt Generator</button>
+<button onclick="generateStoryPrompt()">Plot Outline Generator</button>
+
+
+<script>
+    // Function to generate a random index within the range of the array
+    function getRandomIndex(size) {
+        return Math.floor(Math.random() * size);
+    }
+
+    // ANSI escape codes for text color (used for demonstration)
+    const ANSI_COLORS = ['#116b22', '#9e7503', '#ad0000', '#4c1052', '#07425c'];
+
+    function getRandomColor() {
+        return ANSI_COLORS[getRandomIndex(ANSI_COLORS.length)];
+    }
+
+    function shuffleArray(array) {
+        return array.sort(() => Math.random() - 0.5);
+    }
+
+    function generateRandomPrompt() {
+        const characters = ["kid", "adult", "toddler", "stay at home mother", "overworked mother", "child genius", "detective", "baby","game developer", "teenage queen bee", "teenager", "writer", "song writer", "dancer", "artist", "auto mechanic", "chef", "waiter", "waitress", "prince", "princess", "elderly woman", "elderly man", "prisoner", "child", "nerdy teen", "college student", "overworked father", "stay at home father", "scientist", "wizard", "alien", "time traveler", "football player", "soccer player", "doctor", "high school dropout", "pop star",  "teenage girl", "teenage boy", "ballerina", "construction worker", "mechanic", "teacher", "professor", "supermodel", "fairy", "mermaid", "vampire", "warewolf", "dog", "cat",];
+        const settings = ["Ancient castle", "Futuristic city", "Mysterious island", "Small town", "Space station", "Underwater city", "Magical forest", "Deserted spaceship", "Parallel universe", "Post-apocalyptic world", "abandoned castle", "restaurant", "downtown", "outer space", "enchanted kingdom", "small rural town", "grocery store", "enchanted forest", "middle school", "underwater city", "elevator", "beach", "high school", "doctor's office", "dentist's office", "subway train", "desert", "train station", "tropical island", "ghost town", "school bus", "deserted island", "haunted house", "castle", "elementary school", "tall tower", "park", "forest", "ocean", "lake", "suburban neighborhood", "religious building", "barn", "ranch", "library", "toy store", "college campus", "apartment building", "magic toy store" ,"magic school", "magic library", "child's bedroom", "mansion", "haunted mansion", "daycare", "mall", "clothing store", "department store", "maze", "hotel", "motel", "museum" , "carnival","haunted castle", "toy factory", "daycare", "Mars", "underwater city", "North Pole", "Small rural town" ];
+        const plotIdeas = ["solve a murder mystery", "feels trapped and wants to escape", "start a heist", "is lost", "discover a dead body", "can't escape the dream world", "survive a disaster", "is trying to become famous", "is kidnapped", "is suffering with loneliness", "meet their real parents for the first time", "start a business", "has to overcome a health issue", "suffer an injury", "is trapped and trying to escape", "is trapped in a video game", "family member says something embarrassing about the protagonist", "need to find treasure", "need to break a family curse", "need to break the town's curse", "has a cursed item", "is trying to escape a murderer", "lost their memory", "important item is lost", "has their phone stolen", "is trying to hide secret identity”, “is turned into an animal", "is shrunk down", "has everyone turn against them", "wants to be leader", "wants to own a business", "is trying to get a job", "is trying to get into a good school", "parent is kidnapped", "parents are kidnapped", "died and is trying to come back to life", "died and is a ghost", "is threatened with violence", "solve a heist mystery", "is stranded in space", "has accidentally built a dangerous invention", "accidentally discover a bag is with a weapon and a  ton of money", "has to attempt to break into some building to find something", "think that something/place is haunted/cursed", "has to go to war and fight someone", "tracks down a criminal" ];
+        const plotIdeas2 = ["is turned into a toy", "is being chased by someone who wants to eat them", "is trying to think of an idea of what to make their work about (like a book, song, painting, etc.)", "falls in love with someone who doesn't love them back", "switches bodies with sibling", "switches bodies with their child", "is  trying to make a movie",  "is dealing with writer's block", "is tasked with helping other people get ready for a contest", "has to help overthrow the government", "apocalypse", "pandemic", "natural disaster”, “is forced to work with someone they hate", "turns into a different creature", "accidentally travels back in time", "accidentally travels forward in time", "switches bodies with parent", "switches body with worst enemy", "tries to win the approval of someone", "job loss", "is forced to do a dare", "is forced to do something embarrassing on stage", "has to learn to overcome stage fright", "tries to follow the dream they've had their whole life", "wants to do something that their parents do not approve of", "has some trip cancelled on them", "is short on money and is desperate to make some", "ccidentally kills someone", "navigate a forbidden romance", "discovers a ghost", "battle a supernatural force", "has to overthrow the government", "have to babysit someone but manage to lose them in the blink of an eye", "is trying to win a contest", "is trying to make new friends and get out more", "is separated from loved one"];
+        const plotIdeas3 = ["plays magic board game", "has to return something, but it is lost or damaged", "thinks of imaginary world", "a park is about to get torn down, and a group of kids try to save it", "someone's idea was stolen", "protagonist tries to rob a bank, looking for the money needed for financing the cure of a dying relative", "protagonist goes on a cross-country adventure to return an important item", "protagonist starts getting revenge on all the people who have wronged them", "protagonist is trapped with a dangerous person", "thinks of imaginary world that becomes real", "is sick", "protagonist gets broken up with and tries to win him/her back"];
+        const traits = ["funny", "arrogant", "brave", "loyal", "intimidating", "lazy", "serious", "resilient", "logical", "shy", "outgoing", "vain",  "passive", "passive aggressive", "aggressive", "honest", "blunt", "dishonest", "cowardly", "creative", "kind", "neurotic", "ambitious", "awkward", "stubborn", "compassionate", "selfish", "rude", "humble", "inconsiderate", "selfless", "polite", "confident", "sassy", "apathetic", "callous", "trustworthy", "conceited", "nurturing" ];
+
+        shuffleArray(characters);
+        shuffleArray(settings);
+        shuffleArray(plotIdeas);
+        shuffleArray(plotIdeas2);
+        shuffleArray(plotIdeas3);
+        shuffleArray(traits);
+
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = `
+            <p style="color: #62379e">For plot ideas, you have three choices</p>
+            <p style="color: #62379e">You can either choose just one or use more than one of them for your story</p>
+            
+            <hr style="color: #f7adb5"></hr> 
+            
+            
+            <p style="color: #4f2226">Random Character: ${characters[getRandomIndex(characters.length)]}</p>
+            <p style="color: #4f2226">Setting: ${settings[getRandomIndex(settings.length)]}</p>
+            <p style="color: #4f2226">Plot Idea: ${plotIdeas[getRandomIndex(plotIdeas.length)]}</p>
+            <p style="color: #4f2226">Plot Idea: ${plotIdeas2[getRandomIndex(plotIdeas2.length)]}</p>
+            <p style="color: #4f2226">Plot Idea: ${plotIdeas3[getRandomIndex(plotIdeas3.length)]}</p>
+            <p style="color: #4f2226">Personality Traits: ${traits[getRandomIndex(traits.length)]}</p>
+        `;
+    }
+
+    function generateStoryPrompt() {
+        const exposition = ["protagonist and their family has lived in stagnent lives and has never had any adventures", "something is being brought back to life", "there is an apocalypse", "protagonist is forced to do something", "the protagonist is a bad person", "Character is rude and needs to be taught a lesson", "protagonist is a recently divorced person or was broken up with", "protagonist is making an invention", "protagonist has just finished creating a new invention", "protagonist feels like they are not able to be themselves and are only doing things that other people want them to do", "protagonist is unconfident", "protagonist finds out they are pregnant or that someone else is", "protagonist needs to get a rare item", "protagonist wants/needs the approval for something", "protagonist had just lost a loved one and is in mourning", "protagonist has a dream to become famous", "protagonist used to have an amazing glorious life, but they don't anymore", "protagonist is an an abusive relationship with significant other/friend/family member", "protagonist desperately wants a friend or significant other", "protagonist's friend/family member has moved far away", "protagonist just moved to a new place"];
+        const middle = ["the protagonist faced challenges", "unexpected events unfolded", "a mysterious stranger appeared", "the tension reached its peak"];
+        const climax = ["main character gets hurt", "main character finds out they were betrayed", "main character catches someone doing something bad", "the main character confesses something","hang off the edge of building as the villain at them in an attempt to have them killed, then to his death", "discovers the treasure", "protagonist finds the someone they were looking for", "the (person in charge, such as a boss, recruiter, coach, teacher, etc.) has posted a list of people who get to participate or compete. The protagonists walks forward to look at the list", "kills the villain", "the protagonist wins something", "protagonist and other characters team up to defeat the villain", "protagonist confesses their love", "another character confesses their love for the protagonist", "the protagonist's relationship (romantic or platonic) ends", "They call the protagonist to talk with them about their decision", "exposes the villain", "hero saves the victim", "main character escapes", "the main character comes face to face with the final villain, and they win",];
+        const end = ["and they lived happily ever after", "the world was forever changed", "a new adventure began", "the mystery was finally solved"];
+
+        shuffleArray(exposition);
+        shuffleArray(middle);
+        shuffleArray(climax);
+        shuffleArray(end);
+
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = `
+            <p style="color: ${getRandomColor()}">Exposition: ${exposition[getRandomIndex(exposition.length)]}</p>
+            <p style="color: ${getRandomColor()}">Middle: ${middle[getRandomIndex(middle.length)]}</p>
+            <p style="color: ${getRandomColor()}">climax: ${climax[getRandomIndex(climax.length)]}</p>
+            <p style="color: ${getRandomColor()}">End: ${end[getRandomIndex(end.length)]}</p>
+        `;
+    }
+</script>
+
+</body>
+</html>
